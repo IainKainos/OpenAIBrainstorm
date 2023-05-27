@@ -24,11 +24,11 @@ const userConfig = {
 
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {
 	type: "remote",
-	tenantId: process.env.REACT_APP_TENANT_ID, // REPLACE WITH YOUR TENANT ID
-	tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_PRIMARY_KEY, {
+	tenantId: extractStringEnvVar(REACT_APP_TENANT_ID), // REPLACE WITH YOUR TENANT ID
+	tokenProvider: new InsecureTokenProvider(extractStringEnvVar(REACT_APP_PRIMARY_KEY), {
 		id: "userId",
 	}),
-	endpoint: process.env.REACT_APP_SERVICE_ENDPOINT, // REPLACE WITH YOUR AZURE ENDPOINT
+	endpoint: extractStringEnvVar(REACT_APP_SERVICE_ENDPOINT), // REPLACE WITH YOUR AZURE ENDPOINT
 };
 
 const localConnectionConfig: AzureLocalConnectionConfig = {
@@ -40,3 +40,17 @@ const localConnectionConfig: AzureLocalConnectionConfig = {
 export const connectionConfig: AzureClientProps = {
 	connection: useAzure ? remoteConnectionConfig : localConnectionConfig,
 };
+
+export function extractStringEnvVar(
+    key: keyof NodeJS.ProcessEnv,
+): string {
+    const value = process.env[key];
+
+    if (value === undefined) {
+        const message = `The environment variable "${key}" cannot be "undefined".`;
+
+        throw new Error(message);
+    }
+
+    return value;
+}
