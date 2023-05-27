@@ -8,6 +8,7 @@ import { getRandomName } from "@fluidframework/server-services-client";
 import { v4 as uuid } from "uuid";
 import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
 
+
 export const useAzure = process.env.REACT_APP_FLUID_CLIENT === "azure";
 
 export const containerSchema = {
