@@ -2,6 +2,7 @@ import { IFluidContainer, ISharedMap, SharedMap } from "fluid-framework";
 import { AzureMember } from "@fluidframework/azure-client";
 import { NoteData, Position } from "./Types";
 
+
 const c_NoteIdPrefix = "noteId_";
 const c_PositionPrefix = "position_";
 const c_AuthorPrefix = "author_";
