@@ -21,9 +21,18 @@ jobs:
       REACT_APP_SERVICE_ENDPOINT: ${{ secrets.REACT_APP_SERVICE_ENDPOINT }}
       REACT_APP_TENANT_ID: ${{ secrets.REACT_APP_TENANT_ID }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Do the checkout
+        id: checkoutStuff
+        uses: actions/checkout@v3
         with:
           submodules: true
+      - name: create env file
+        run: |
+          touch .env
+          echo REACT_APP_FLUID_CLIENT=${{ secrets.REACT_APP_FLUID_CLIENT }} >> .env
+          echo REACT_APP_PRIMARY_KEY=${{ secrets.REACT_APP_PRIMARY_KEY }} >> .env
+          echo REACT_APP_SERVICE_ENDPOINT=${{ secrets.REACT_APP_SERVICE_ENDPOINT }} >> .env
+          echo REACT_APP_TENANT_ID=${{ secrets.REACT_APP_TENANT_ID }} >> .env
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
