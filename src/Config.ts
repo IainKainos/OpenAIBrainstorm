@@ -23,11 +23,11 @@ const userConfig = {
 
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {
 	type: "remote",
-	tenantId: "", // REPLACE WITH YOUR TENANT ID
-	tokenProvider: new InsecureTokenProvider("" /* REPLACE WITH YOUR PRIMARY KEY */, {
+	tenantId: process.env.REACT_APP_TENANT_ID, // REPLACE WITH YOUR TENANT ID
+	tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_PRIMARY_KEY, {
 		id: "userId",
 	}),
-	endpoint: "", // REPLACE WITH YOUR AZURE ENDPOINT
+	endpoint: process.env.REACT_APP_SERVICE_ENDPOINT, // REPLACE WITH YOUR AZURE ENDPOINT
 };
 
 const localConnectionConfig: AzureLocalConnectionConfig = {
