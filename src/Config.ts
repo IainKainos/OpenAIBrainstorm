@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
 import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
 
 
-export const useAzure = process.env.REACT_APP_FLUID_CLIENT === "azure";
+export const useAzure = true;
 
 export const containerSchema = {
 	initialObjects: {
@@ -25,9 +25,7 @@ const userConfig = {
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {
 	type: "remote",
 	tenantId: extractStringEnvVar("REACT_APP_TENANT_ID"), // REPLACE WITH YOUR TENANT ID
-	tokenProvider: new InsecureTokenProvider(extractStringEnvVar("REACT_APP_PRIMARY_KEY"), {
-		id: "userId",
-	}),
+	tokenProvider: new InsecureTokenProvider(extractStringEnvVar("REACT_APP_PRIMARY_KEY", userConfig),
 	endpoint: extractStringEnvVar("REACT_APP_SERVICE_ENDPOINT"), // REPLACE WITH YOUR AZURE ENDPOINT
 };
 
