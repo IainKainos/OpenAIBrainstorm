@@ -25,7 +25,7 @@ const userConfig = {
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {
 	type: "remote",
 	tenantId: extractStringEnvVar("REACT_APP_TENANT_ID"), // REPLACE WITH YOUR TENANT ID
-	tokenProvider: new InsecureTokenProvider(extractStringEnvVar("REACT_APP_PRIMARY_KEY", userConfig),
+	tokenProvider: new InsecureTokenProvider(extractStringEnvVar("REACT_APP_PRIMARY_KEY"), userConfig),
 	endpoint: extractStringEnvVar("REACT_APP_SERVICE_ENDPOINT"), // REPLACE WITH YOUR AZURE ENDPOINT
 };
 
